@@ -6,7 +6,7 @@ function SRIR_data = read_RIR(SRIR_data)
 % It currently supports databases for the Eigenmike, Tetramic (48 kHz and
 % 192 kHz), and FRL room acoustics array.
 %
-% Author: Sebastià V. Amengual
+% Author: Sebastiï¿½ V. Amengual
 % Last modified: 11/17/2021
 
 switch upper(SRIR_data.MicArray)
@@ -54,9 +54,14 @@ switch upper(SRIR_data.MicArray)
         [SRIR_data.Raw_RIR, fs_Raw] = audioread(SRIR_data.Raw_RIR_Path);
         SRIR_data.P_RIR = SRIR_data.Raw_RIR(:,7);
         fs_P = fs_Raw;
+
+    case 'SDM-TU-ILMENAU'
+        SRIR_data.P_RIR = SRIR_data.Raw_RIR(:,7);
+        fs_Raw = SRIR_data.fs;
+        fs_P = fs_Raw;
         
     otherwise
-        error('Invalid microhone array type "%s".', SRIR_data.MicArray);
+        error('Invalid microphone array type "%s".', SRIR_data.MicArray);
 end
 
 if SRIR_data.fs ~= fs_Raw

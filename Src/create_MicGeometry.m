@@ -7,7 +7,7 @@ function micpos = create_MicGeometry(micArray)
 %           - micArray: String with array keyword: 'Tetramic', 'Eigenmike',
 %           'FRL_5cm', 'FRL_10cm'.
 %
-% Author: Sebastià V. Amengual
+% Author: Sebastiï¿½ V. Amengual
 % Last Modified: 11/17/2021
 
 switch upper(micArray)
@@ -73,6 +73,15 @@ switch upper(micArray)
                  0 -0.7071 -0.7071
                  0 0.7071 -0.7071
                  0 0 0]*0.096/2;
+
+    case 'SDM-TU-ILMENAU'
+    micpos = [1 0 0;
+                0 -0.7071 -0.7071;
+                0 -0.7071 0.7071;
+                -1 0 0;
+                0 0.7071 0.7071;
+                0 0.7071 -0.7071;
+                0 0 0]*0.1/2;
 
     otherwise
         error('Invalid microhone array type "%s".', micArray);
