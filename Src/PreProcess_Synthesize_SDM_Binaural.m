@@ -21,10 +21,6 @@ switch upper(BRIR_data.HRTF_Type)
         HRIR = permute(HRIR, [2, 3, 1]);
 
     case 'SOFA'
-        % Restrict the HRTF directions to az=-180:180 degrees, el=-90:90 degrees
-        HRIR_data.SourcePosition(HRIR_data.SourcePosition(:,1)>pi,1) = ...
-            HRIR_data.SourcePosition(HRIR_data.SourcePosition(:,1)>pi,1) - 2*pi;  
-
         TempSourcePosition(:,1) = deg2rad(HRIR_data.SourcePosition(:,1));
         TempSourcePosition(:,2) = deg2rad(HRIR_data.SourcePosition(:,2));
 
