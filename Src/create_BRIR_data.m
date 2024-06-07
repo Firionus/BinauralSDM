@@ -60,6 +60,8 @@ function BRIR_data = create_BRIR_data (varargin)
 %       - RTModRegFreq: Regularization frequncy in Hz above which the RTmod
 %               modification of the late reverberation should be
 %               regularized - float - default: false.
+%       - FFTshiftHRIRs: Whether to apply an fftshift to the HRIRs after 
+%               import - boolean - default: false.
 %
 % Author: Sebastia V. Amengual (samengual@fb.com)
 % Last modified: 12/04/2021
@@ -77,7 +79,7 @@ listNames = {'fs','HRTF_Subject','HRTF_Type','HRTF_Path',...
     'ExportSofaFlag','ExportWavFlag','ExportDSERcFlag','ExportDSERsFlag',...
     'DestinationPath','Length','Split','MixingTime','AzOrient','ElOrient',...
     'RenderingCondition','Attenuation','QuantizeDOAFlag','DOADirections',...
-    'DOAAzOffset','DOAElOffset','BandsPerOctave','EqTxx','RTModRegFreq'};
+    'DOAAzOffset','DOAElOffset','BandsPerOctave','EqTxx','RTModRegFreq','FFTshiftHRIRs'};
 
 for i = 1:2:length(varargin)
     if ~any(strcmpi(listNames,varargin{i}))
@@ -102,6 +104,7 @@ BRIR_data.fs = 48e3;
 
 BRIR_data.HRTF_Type = 'SOFA';
 BRIR_data.HRTF_Path = '..\..\Data\HRIRs\KU100_HRIR_FULL2DEG_Koeln.sofa';
+BRIR_data.FFTshiftHRIRs = false;
 
 BRIR_data.AzOrient = (-180:1:180)';
 BRIR_data.ElOrient = (-90:5:90)';

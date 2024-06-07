@@ -34,6 +34,10 @@ switch upper(BRIR_data.HRTF_Type)
         error('Invalid HRIR format "%s".', BRIR_data.HRTF_Type);
 end
 
+if BRIR_data.FFTshiftHRIRs
+    HRIR = fftshift(HRIR, 1);
+end
+
 [DOA_rad(:,1), DOA_rad(:,2), DOA_rad(:,3)] = cart2sph( ...
     SRIR_data.DOA(:,1), SRIR_data.DOA(:,2), SRIR_data.DOA(:,3));
 az = DOA_rad(:,1);
